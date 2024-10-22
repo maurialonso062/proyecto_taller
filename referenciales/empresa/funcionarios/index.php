@@ -57,7 +57,7 @@
                                 <div class="row clearfix">
                                     <input type="hidden" value="0" id="txtOperacion"/>
                                 
-                                    <!-- CAMPO PARA CODIGO CON 4 COLUMNAS -->
+                                    <!-- CAMPO PARA CODIGO CON 2 COLUMNAS -->
                                     <div class="col-sm-2">
                                         <div class="form-group form-float">
                                             <div class="form-line">
@@ -67,8 +67,8 @@
                                         </div>
                                     </div>
                                     
-                                    <!-- CAMPO PARA DESCRIPCION CON 4 COLUMNAS -->
-                                    <div class="col-sm-4">
+                                    <!-- CAMPO PARA NOMBRE CON 3 COLUMNAS -->
+                                    <div class="col-sm-3">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                  <input type="text" id="fun_nombres" class="form-control" disabled>
@@ -76,12 +76,48 @@
                                             </div>
                                         </div>
                                     </div>
-                                              <!-- CAMPO PARA GENTILICIO CON64 COLUMNAS -->
-                                    <div class="col-sm-6">
+                                              <!-- CAMPO PARA APELLIDO CON 3 COLUMNAS -->
+                                    <div class="col-sm-3">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                  <input type="text" id="fun_apellidos" class="form-control" disabled>
                                                  <label class="form-label">Apellido</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- CAMPO PARA TELEFONO CON 4 COLUMNAS -->
+                                    <div class="col-sm-3">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                 <input type="text" id="fun_telefono" class="form-control" disabled>
+                                                 <label class="form-label">Telefono</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- CAMPO PARA DIRECCION CON 6 COLUMNAS -->
+                                    <div class="col-sm-6">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                 <input type="text" id="fun_direc" class="form-control" disabled>
+                                                 <label class="form-label">Dirección</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- CAMPO PARA CORREO CON 6 COLUMNAS -->
+                                    <div class="col-sm-6">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                 <input type="text" id="fun_email" class="form-control" disabled>
+                                                 <label class="form-label">Correo</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- CAMPO PARA RUC CON 6 COLUMNAS -->
+                                    <div class="col-sm-3">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                 <input type="text" id="fun_ruc" class="form-control" disabled>
+                                                 <label class="form-label">RUC</label>
                                             </div>
                                         </div>
                                     </div>
@@ -110,6 +146,10 @@
                                             <th>Codigo</th>
                                             <th>Nombre</th>
                                             <th>Apellido</th>
+                                            <th>Teléfono</th>
+                                            <th>Dirección</th>
+                                            <th>Correo</th>
+                                            <th>RUC</th>
                                         </tr>
                                     </thead>
                                     <tbody id="tableBody">
@@ -117,9 +157,13 @@
                                     </tbody>
                                     <tfoot>
                                     <tr>
-                                         <th>Codigo</th>
-                                            <th>Nombre</th>
-                                            <th>Apellido</th>
+                                        <th>Codigo</th>
+                                        <th>Nombre</th>
+                                        <th>Apellido</th>
+                                        <th>Teléfono</th>
+                                        <th>Dirección</th>
+                                        <th>Correo</th>
+                                        <th>RUC</th>
                                         </tr>
                                     </tfoot>
                                 </table>

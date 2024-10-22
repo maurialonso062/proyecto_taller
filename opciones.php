@@ -280,12 +280,12 @@
                         <ul class="ml-menu">
                             <li>
                                 <a href="javascript:void(0);">
-                                    <span>Empresa</span>
+                                    <span>Informes de Compra</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="javascript:void(0);">
-                                    <span>Sucursal</span>
+                                    <span>Informes de Venta</span>
                                 </a>
                             </li> 
 
@@ -293,7 +293,12 @@
                                 <i class="material-icons" style="margin-left: 15px; line-height: 0; font-size: 25px">list</i>
                                 <span style="font-weight: bold;">Ref_Varios</span>
                             </a>
-                            <ul class="ml-menu">
+                            <ul class="ml-menu">                            
+                            <li>
+                                <a href="/proyecto_taller/referenciales/empresa/funcionarios">
+                                     <span>Funcionarios</span>
+                                </a>
+                            </li>                            
                             <li>
                                 <a href="/proyecto_taller/referenciales/geograficos/paises">
                                      <span>Paises</span>
@@ -310,8 +315,13 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);    ">
-                                     <span>Persona</span>
+                                <a href="/proyecto_taller/referenciales/empresa/empresa">
+                                     <span>Empresa</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/proyecto_taller/referenciales/empresa/sucursal">
+                                     <span>Sucursal</span>
                                 </a>
                             </li>
                             </ul>

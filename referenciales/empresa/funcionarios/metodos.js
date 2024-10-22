@@ -129,7 +129,7 @@ function mensajeOperacion(titulo, mensaje, tipo) {
 
 function listar(){
     $.ajax({
-        url:"http://127.0.0.1:8000/api_examen_final/funcionario/read",
+        url:"http://127.0.0.1:8000/api_proyecto/funcionario/read",
         method:"POST",
         dataType:"json",
         
@@ -139,15 +139,27 @@ function listar(){
         var lista = "";
         for(rs of resultado){
             
-            lista = lista + "<tr   class=\"item-list\" onclick=\"seleccionFuncionarios("+rs.id+",'"+rs.fun_nombres+"','"+rs.fun_apellidos+"');\">";
+            lista = lista + "<tr   class=\"item-list\" onclick=\"seleccionFuncionarios("+rs.id+",'"+rs.fun_nombre+"','"+rs.fun_apellido+"','"+rs.fun_telefono+"','"+rs.fun_direccion+"','"+rs.fun_email+"','"+rs.fun_ruc+"');\">";
                 lista = lista + "<td>";
                 lista = lista + rs.id;
                 lista = lista +"</td>";
                 lista = lista + "<td>";
-                lista = lista + rs.fun_nombres;
+                lista = lista + rs.fun_nombre;
                 lista = lista +"</td>";
                 lista = lista + "<td>";
-                lista = lista + rs.fun_apellidos;
+                lista = lista + rs.fun_apellido;
+                lista = lista +"</td>";
+                lista = lista + "<td>";
+                lista = lista + rs.fun_telefono;
+                lista = lista +"</td>";
+                lista = lista + "<td>";
+                lista = lista + rs.fun_direccion;
+                lista = lista +"</td>";
+                lista = lista + "<td>";
+                lista = lista + rs.fun_email;
+                lista = lista +"</td>";
+                lista = lista + "<td>";
+                lista = lista + rs.fun_ruc;
                 lista = lista +"</td>";
                 
                 lista = lista + "</tr>";

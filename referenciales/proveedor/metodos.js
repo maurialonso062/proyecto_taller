@@ -143,8 +143,7 @@ function listar(){
         var lista = "";
         for(rs of resultado){
             lista = lista + "<tr class=\"item-list\" onclick=\"seleccionProveedor(" + rs.id + "," + rs.ciudad_id + "," + rs.nacionalidad_id + ",'" + rs.prov_razonsocial + "','" + rs.prov_ruc + "','" + rs.prov_telefono + "','" + rs.prov_direccion + "','" + rs.prov_correo + "','" + rs.ciudades_descripcion + "','" + rs.nacion_descri + "');\">";
-                lista = lista + "<td>",
-                lista = lista + rs.id;
+                lista = lista + "<td>" + rs.id + "</td>";
                 lista = lista + "<td>" + rs.prov_razonsocial + "</td>";
                 lista = lista + "<td>" + rs.prov_ruc + "</td>";
                 lista = lista + "<td>" + rs.prov_telefono + "</td>";
@@ -153,32 +152,6 @@ function listar(){
                 lista = lista + "<td>" + rs.ciudades_descripcion + "</td>";
                 lista = lista + "<td>" + rs.nacion_descri + "</td>";
             lista = lista + "</tr>";
-
-                lista = lista + "<td>";
-                lista = lista + rs.id;
-                lista = lista +"</td>";
-                lista = lista + "<td>";
-                lista = lista + rs.prov_razonsocial;
-                lista = lista +"</td>";
-                lista = lista + "<td>";
-                lista = lista + rs.prov_ruc;
-                lista = lista +"</td>";
-                lista = lista + "<td>";
-                lista = lista + rs.prov_telefono;
-                lista = lista +"</td>";
-                lista = lista + "<td>";
-                lista = lista + rs.prov_direccion;
-                lista = lista +"</td>";
-                lista = lista + "<td>";
-                lista = lista + rs.prov_correo;
-                lista = lista + "</td>";
-                lista = lista + "<td>";
-                lista = lista + rs.ciudades_descripcion;
-                lista = lista +"</td>";
-                lista = lista + "</td>";
-                lista = lista + rs.nacion_descri;
-                lista = lista + "</tr>";
-                
         }
         $("#tableBody").html(lista);
         formatoTabla();

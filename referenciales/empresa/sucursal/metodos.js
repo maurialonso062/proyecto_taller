@@ -9,25 +9,25 @@ function formatoTabla(){
                 extend:'copy',
                 text:'COPIAR',
                 className:'btn btn-primary waves-effect',
-                title:'Listado de Nacionalidades'
+                title:'Listado de Clientes'
             },
             {
                 extend:'excel',
                 text:'EXCEL',
                 className:'btn btn-success waves-effect',
-                title:'Listado de Nacionalidades'
+                title:'Listado de Clientes'
             },
             {
                 extend:'pdf',
                 text:'PDF',
                 className:'btn btn-danger waves-effect',
-                title:'Listado de Nacionalidades'
+                title:'Listado de Clientes'
             },
             {
                 extend:'print',
                 text:'IMPRIMIR',
                 className:'btn btn-warning waves-effect',
-                title:'Listado de Nacionalidades'
+                title:'Listado de Clientes'
             }
         ],
         iDisplayLength:3,
@@ -50,8 +50,9 @@ function cancelar(){
 
 function agregar(){
     $("#txtOperacion").val(1);
-    $("#txtCodigo").val(0);
-    $("#nacion_descri").removeAttr("disabled");
+    $("#id").val(0);
+    $("#cli_ruc").removeAttr("disabled");
+    $("#cli_razonsocial").removeAttr("disabled");
 
     $("#btnAgregar").attr("disabled","true");
     $("#btnEditar").attr("disabled","true");
@@ -65,7 +66,8 @@ function agregar(){
 
 function editar(){
     $("#txtOperacion").val(2);
-    $("#nacion_descri").removeAttr("disabled");
+    $("#cli_ruc").removeAttr("disabled");
+    $("#cli_razonsocial").removeAttr("disabled");
 
     $("#btnAgregar").attr("disabled","true");
     $("#btnEditar").attr("disabled","true");
@@ -121,66 +123,24 @@ function mensajeOperacion(titulo,mensaje,tipo) {
 }
 
 
-function buscarProductos(){
-    $.ajax({
-        url: getUrl()+"items/buscar",
-        method: "POST",
-        dataType: "json",
-        data:{
-            "item_decripcion":$("#item_decripcion").val(),
-            "tipo_descripcion":"PRODUCTO"
-        }
-    })
-    .done(function(resultado){
-        var lista = "<ul class=\"list-group\">";
-        for(rs of resultado){
-            lista += "<li class=\"list-group-item\" onclick=\"seleccionProducto("+rs.item_id+",'"+rs.item_decripcion+"')\">"+rs.item_decripcion+"</li>";   
-        }
-        lista += "</ul>";
-        $("#listaProductos").html(lista);
-        $("#listaProductos").attr("style","display:block; position: absolute; z-index: 2000;");
-    })
-    .fail(function(a,b,c){
-        alert(c);
-        console.log(a.responseText);
-    });
-}
-
-// Rellena el campo de producto seleccionado.
-function seleccionProducto(item_id, item_decripcion){
-    $("#item_id").val(item_id);
-    $("#item_decripcion").val(item_decripcion);
-
-    $("#listaProductos").html("");
-    $("#listaProductos").attr("style","display:none;");
-
-    $(".form-line").attr("class","form-line focused");
-}
-
-function seleccionPais(codigo, descripcion, gentilicio, siglas){
-    $("#txtCodigo").val(codigo);
-    $("#txtDescripcion").val(descripcion);
-    $("#txtGentilicio").val(gentilicio);
-    $("#txtSiglas").val(siglas);
-
-    $(".form-line").attr("class","form-line focused");
-}
-
 function listar(){
     $.ajax({
-        url:"http://127.0.0.1:8000/api_proyecto/nacionalidad/read",
+        url:"http://127.0.0.1:8000/api_prueba_examen/clientes/read",
         method:"GET",
         dataType: "json"
     })
     .done(function(resultado){
         var lista = "";
         for(rs of resultado){
-            lista = lista + "<tr class=\"item-list\" onclick=\"seleccionNacionalidad("+rs.id+",'"+rs.nacion_descri+"');\">";
+            lista = lista + "<tr class=\"item-list\" onclick=\"seleccionCliente("+rs.id+",'"+rs.cli_ruc+"','"+rs.cli_razonsocial+"');\">";
                 lista = lista + "<td>";
                 lista = lista + rs.id;
                 lista = lista +"</td>";
                 lista = lista + "<td>";
-                lista = lista + rs.nacion_descri;
+                lista = lista + rs.cli_ruc;
+                lista = lista +"</td>";
+                lista = lista + "<td>";
+                lista = lista + rs.cli_razonsocial;
                 lista = lista +"</td>";
             lista = lista + "</tr>";
         }
@@ -191,31 +151,34 @@ function listar(){
         alert(c);
     })
 }
-function seleccionNacionalidad(codigo, nacion_descri){
-    $("#txtCodigo").val(codigo);
-    $("#nacion_descri").val(nacion_descri);
+
+function seleccionCliente(id, cli_ruc, cli_razonsocial){
+    $("#id").val(id);
+    $("#cli_ruc").val(cli_ruc);
+    $("#cli_razonsocial").val(cli_razonsocial);
 
     $(".form-line").attr("class","form-line focused");
 }
 
 function grabar(){
-    var endpoint = "nacionalidad/create";
+    var endpoint = "clientes/create";
     var metodo = "POST";
     if($("#txtOperacion").val()==2){
-        endpoint = "nacionalidad/update/"+$("#txtCodigo").val();
+        endpoint = "clientes/update/"+$("#id").val();
         metodo = "PUT";
     }
     if($("#txtOperacion").val()==3){
-        endpoint = "nacionalidad/delete/"+$("#txtCodigo").val();
+        endpoint = "clientes/delete/"+$("#id").val();
         metodo = "DELETE";
     }
     $.ajax({
-        url:"http://127.0.0.1:8000/api_proyecto/"+endpoint,
+        url:"http://127.0.0.1:8000/api_prueba_examen/"+endpoint,
         method:metodo,
         dataType: "json",
         data: { 
-            'id': $("#txtCodigo").val(), 
-            'nacion_descri': $("#nacion_descri").val()
+            'id': $("#id").val(), 
+            'cli_ruc': $("#cli_ruc").val(), 
+            'cli_razonsocial': $("#cli_razonsocial").val()
         }
 
     })
