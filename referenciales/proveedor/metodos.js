@@ -56,8 +56,8 @@ function agregar(){
     $("#prov_telefono").removeAttr("disabled");
     $("#prov_direccion").removeAttr("disabled");
     $("#prov_correo").removeAttr("disabled");
-    $("#ciu_descripcion").removeAttr("disabled");
-    $("#nac_descri").removeAttr("disabled");
+    $("#ciudades_descripcion").removeAttr("disabled");
+    $("#nacion_descri").removeAttr("disabled");
 
     $("#btnAgregar").attr("disabled","true");
     $("#btnEditar").attr("disabled","true");
@@ -76,8 +76,8 @@ function editar(){
     $("#prov_telefono").removeAttr("disabled");
     $("#prov_direccion").removeAttr("disabled");
     $("#prov_correo").removeAttr("disabled");
-    $("#ciu_descripcion").removeAttr("disabled");
-    $("#nac_descri").removeAttr("disabled");
+    $("#ciudades_descripcion").removeAttr("disabled");
+    $("#nacion_descri").removeAttr("disabled");
 
     $("#btnAgregar").attr("disabled","true");
     $("#btnEditar").attr("disabled","true");
@@ -135,23 +135,50 @@ function mensajeOperacion(titulo,mensaje,tipo) {
 
 function listar(){
     $.ajax({
-        url:"http://127.0.0.1:8000/api_taller/proveedores/read",
+        url:"http://127.0.0.1:8000/api_proyecto/proveedores/read",
         method:"GET",
         dataType: "json"
     })
     .done(function(resultado){
         var lista = "";
         for(rs of resultado){
-            lista = lista + "<tr class=\"item-list\" onclick=\"seleccionProveedor(" + rs.id + "," + rs.ciudad_id + "," + rs.nacionalidad_id + ",'" + rs.prov_razonsocial + "','" + rs.prov_ruc + "','" + rs.prov_telefono + "','" + rs.prov_direccion + "','" + rs.prov_correo + "','" + rs.ciu_descripcion + "','" + rs.nac_descri + "');\">";
-                lista = lista + "<td>" + rs.id + "</td>";
+            lista = lista + "<tr class=\"item-list\" onclick=\"seleccionProveedor(" + rs.id + "," + rs.ciudad_id + "," + rs.nacionalidad_id + ",'" + rs.prov_razonsocial + "','" + rs.prov_ruc + "','" + rs.prov_telefono + "','" + rs.prov_direccion + "','" + rs.prov_correo + "','" + rs.ciudades_descripcion + "','" + rs.nacion_descri + "');\">";
+                lista = lista + "<td>",
+                lista = lista + rs.id;
                 lista = lista + "<td>" + rs.prov_razonsocial + "</td>";
                 lista = lista + "<td>" + rs.prov_ruc + "</td>";
                 lista = lista + "<td>" + rs.prov_telefono + "</td>";
                 lista = lista + "<td>" + rs.prov_direccion + "</td>";
                 lista = lista + "<td>" + rs.prov_correo + "</td>";
-                lista = lista + "<td>" + rs.ciu_descripcion + "</td>";
-                lista = lista + "<td>" + rs.nac_descri + "</td>";
+                lista = lista + "<td>" + rs.ciudades_descripcion + "</td>";
+                lista = lista + "<td>" + rs.nacion_descri + "</td>";
             lista = lista + "</tr>";
+
+                lista = lista + "<td>";
+                lista = lista + rs.id;
+                lista = lista +"</td>";
+                lista = lista + "<td>";
+                lista = lista + rs.prov_razonsocial;
+                lista = lista +"</td>";
+                lista = lista + "<td>";
+                lista = lista + rs.prov_ruc;
+                lista = lista +"</td>";
+                lista = lista + "<td>";
+                lista = lista + rs.prov_telefono;
+                lista = lista +"</td>";
+                lista = lista + "<td>";
+                lista = lista + rs.prov_direccion;
+                lista = lista +"</td>";
+                lista = lista + "<td>";
+                lista = lista + rs.prov_correo;
+                lista = lista + "</td>";
+                lista = lista + "<td>";
+                lista = lista + rs.ciudades_descripcion;
+                lista = lista +"</td>";
+                lista = lista + "</td>";
+                lista = lista + rs.nacion_descri;
+                lista = lista + "</tr>";
+                
         }
         $("#tableBody").html(lista);
         formatoTabla();
@@ -161,7 +188,7 @@ function listar(){
     });
 }
 
-function seleccionProveedor(id, ciudad_id, nacionalidad_id, prov_razonsocial, prov_ruc, prov_telefono, prov_direccion, prov_correo, ciu_descripcion, nac_descri) {
+function seleccionProveedor(id, ciudad_id, nacionalidad_id, prov_razonsocial, prov_ruc, prov_telefono, prov_direccion, prov_correo, ciudades_descripcion, nacion_descri) {
     // Asignar los valores a los campos correspondientes
     $("#id").val(id);
     $("#prov_razonsocial").val(prov_razonsocial);
@@ -171,8 +198,8 @@ function seleccionProveedor(id, ciudad_id, nacionalidad_id, prov_razonsocial, pr
     $("#prov_correo").val(prov_correo);
     
     // Aquí estás asignando ciudad y nacionalidad correctamente
-    $("#ciu_descripcion").val(ciu_descripcion); // Campo visible de la ciudad
-    $("#nac_descri").val(nac_descri); // Campo visible de la nacionalidad
+    $("#ciudades_descripcion").val(ciudades_descripcion); // Campo visible de la ciudad
+    $("#nacion_descri").val(nacion_descri); // Campo visible de la nacionalidad
     $("#ciudad_id").val(ciudad_id); // Campo oculto de ciudad_id
     $("#nacionalidad_id").val(nacionalidad_id); // Campo oculto de nacionalidad_id
 
@@ -192,14 +219,14 @@ function seleccionProveedor(id, ciudad_id, nacionalidad_id, prov_razonsocial, pr
 
 function buscarCiudades(){
     $.ajax({
-        url:"http://127.0.0.1:8000/api_taller/ciudades/read",
+        url:"http://127.0.0.1:8000/api_proyecto/ciudades/read",
         method: "GET",
         dataType: "json"
     })
     .done(function(resultado){
         var lista = "<ul class=\"list-group\">";
         for (rs of resultado) {
-            lista += "<li class=\"list-group-item\" onclick=\"seleccionCiudad("+rs.id+",'"+rs.ciu_descripcion+"')\">"+rs.ciu_descripcion+"</li>";   
+            lista += "<li class=\"list-group-item\" onclick=\"seleccionCiudad("+rs.id+",'"+rs.ciudades_descripcion+"')\">"+rs.ciudades_descripcion+"</li>";   
         }
         lista += "</ul>";
         $("#listaCiudades").html(lista);
@@ -212,9 +239,9 @@ function buscarCiudades(){
 }
 
 // Rellena el campo de producto seleccionado.
-function seleccionCiudad(id, ciu_descripcion) {
+function seleccionCiudad(id, ciudades_descripcion) {
     $("#ciudad_id").val(id);  // Asegúrate de que el campo hidden exista
-    $("#ciu_descripcion").val(ciu_descripcion);
+    $("#ciudades_descripcion").val(ciudades_descripcion);
 
     $("#listaCiudades").html("");
     $("#listaCiudades").attr("style", "display:none;");
@@ -222,14 +249,14 @@ function seleccionCiudad(id, ciu_descripcion) {
 
 function buscarNacionalidades(){
     $.ajax({
-        url:"http://127.0.0.1:8000/api_taller/nacionalidad/read",
+        url:"http://127.0.0.1:8000/api_proyecto/nacionalidad/read",
         method:"GET",
         dataType: "json"
     })
     .done(function(resultado){
         var lista = "<ul class=\"list-group\">";
         for(rs of resultado){
-            lista += "<li class=\"list-group-item\" onclick=\"seleccionNacionalidad("+rs.id+",'"+rs.nac_descri+"');\">"+rs.nac_descri+"</li>";
+            lista += "<li class=\"list-group-item\" onclick=\"seleccionNacionalidad("+rs.id+",'"+rs.nacion_descri+"');\">"+rs.nacion_descri+"</li>";
         }
         lista += "</ul>";
         $("#listaNacionalidades").html(lista);
@@ -241,9 +268,9 @@ function buscarNacionalidades(){
     })
 }
 
-function seleccionNacionalidad(id,nac_descri){
+function seleccionNacionalidad(id,nacion_descri){
     $("#nacionalidad_id").val(id);
-    $("#nac_descri").val(nac_descri);
+    $("#nacion_descri").val(nacion_descri);
 
     $("#listaNacionalidades").html("");
     $("#listaNacionalidades").attr("style","display:none;");
@@ -261,7 +288,7 @@ function grabar(){
         metodo = "DELETE";
     }
     $.ajax({
-        url:"http://127.0.0.1:8000/api_taller/"+endpoint,
+        url:"http://127.0.0.1:8000/api_proyecto/"+endpoint,
         method:metodo,
         dataType: "json",
         data: { 

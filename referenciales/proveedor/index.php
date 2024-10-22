@@ -113,7 +113,7 @@
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <!-- Campo de texto para la ciudad, habilitado -->
-                                            <input type="text" id="ciu_descripcion" class="form-control" onkeyup="buscarCiudades();">
+                                            <input type="text" id="ciudades_descripcion" class="form-control" onkeyup="buscarCiudades();">
                                             <label class="form-label">Ciudad</label>
                                         </div>
 
@@ -128,7 +128,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" id="nac_descri" class="form-control" onkeyup="buscarNacionalidades();">
+                                            <input type="text" id="nacion_descri" class="form-control" onkeyup="buscarNacionalidades();">
                                             <label class="form-label">Nacionalidad</label>
                                         </div>
                                         <!-- Campo oculto para almacenar el ID de la nacionalidad -->
