@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Registro de Usuario</title>
+    <!-- Favicon-->
+    <link rel="icon" href="icon.ico" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body class="signup-page">
+    <div class="signup-box">
+        <div class="logo">
+            <a href="javascript:void(0);"><b> </b></a>
+            <img src="ahataaju.jpg" alt="ahataaju_icon" >
+            <style>
+            img {
+                border-radius: 50%;
+                width: 130px;
+                height: 130px;
+                display: block;
+                margin: auto;
+            }
+            </style>
+            <small>Registro de Nuevo Usuario</small>
+        </div>
+        <div class="card">
+            <div class="body">
+                    <div class="msg">Regístrate para empezar</div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">person</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="text" class="form-control" id="name" placeholder="Nombre" required autofocus>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">email</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="email" class="form-control" id="email" placeholder="Correo Electrónico" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="password" class="form-control" id="password" placeholder="Contraseña" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">person</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="text" class="form-control" id="login" placeholder="Usuario" required>
+                        </div>
+                    </div>
+                    <button class="btn btn-block bg-black waves-effect" type="button" onclick="validarUsuario();">REGISTRAR</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery Core Js -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap Core Js -->
+    <script src="plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Custom Js -->
+    <script src="js/ruta.js"></script> <!-- Asegúrate de que este archivo contiene la URL base de tu API -->
+    <script>
+        function validarUsuario() {
+            $.ajax({
+                url: getUrl() + "registrarse",  // Ruta de tu controlador Laravel
+                method: "POST",
+                dataType: "json",
+                data: {
+                    "name": $("#name").val(),
+                    "email": $("#email").val(),
+                    "password": $("#password").val(),
+                    "login": $("#login").val()
+                },
+                success: function(response) {
+                    Swal.fire({
+                    title: 'Registro exitoso',
+                    text: 'Por favor, inicia sesión',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                    }).then(() => {
+                        window.location = 'index.html';  // Redirige al login después del registro
+                    });
+                },
+                error: function(xhr) {
+                    if (xhr.status == 404) {
+                    var errors = JSON.parse(xhr.responseText);
+                    Swal.fire({
+                    title: 'Error',
+                    text: Object.values(errors).join('\n'),
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+                    } else {
+                    Swal.fire({
+                    title: 'Error',
+                    text: 'Ocurrió un error inesperado. Intenta nuevamente.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                    });
+                }
+            }
+        });
+    }
+    </script>
+</body>
+</html>

@@ -50,11 +50,9 @@ function cancelar(){
 
 function agregar(){
     $("#txtOperacion").val(1);
-    $("#empresa_descri").removeAttr(empresa_descri);
-    $("#empresa_ruc").removeAttr(empresa_ruc);
-    $("#empresa_direccion").removeAttr(empresa_direccion);
-    $("#empresa_telefono").removeAttr(empresa_telefono);
-    $("#empresa_email").removeAttr(empresa_email);
+    $("#id").val(0);
+    $("#cli_ruc").removeAttr("disabled");
+    $("#cli_razonsocial").removeAttr("disabled");
 
     $("#btnAgregar").attr("disabled","true");
     $("#btnEditar").attr("disabled","true");
@@ -68,11 +66,8 @@ function agregar(){
 
 function editar(){
     $("#txtOperacion").val(2);
-    $("#empresa_descri").removeAttr(empresa_descri);
-    $("#empresa_ruc").removeAttr(empresa_ruc);
-    $("#empresa_direccion").removeAttr(empresa_direccion);
-    $("#empresa_telef").removeAttr(empresa_telefono);
-    $("#empresa_email").removeAttr(empresa_email);
+    $("#cli_ruc").removeAttr("disabled");
+    $("#cli_razonsocial").removeAttr("disabled");
 
     $("#btnAgregar").attr("disabled","true");
     $("#btnEditar").attr("disabled","true");
@@ -130,31 +125,22 @@ function mensajeOperacion(titulo,mensaje,tipo) {
 
 function listar(){
     $.ajax({
-        url:"http://127.0.0.1:8000/api_proyecto/empresa/read",
+        url:"http://127.0.0.1:8000/api_prueba_examen/clientes/read",
         method:"GET",
         dataType: "json"
     })
     .done(function(resultado){
         var lista = "";
         for(rs of resultado){
-            lista = lista + "<tr class=\"item-list\" onclick=\"seleccionCliente("+rs.id+",'"+rs.empresa_descri+"','"+rs.empresa_ruc+"','"+rs.empresa_direccion+"','"+rs.empresa_telef+"','"+rs.empresa_email+"');\">";
+            lista = lista + "<tr class=\"item-list\" onclick=\"seleccionCliente("+rs.id+",'"+rs.cli_ruc+"','"+rs.cli_razonsocial+"');\">";
                 lista = lista + "<td>";
                 lista = lista + rs.id;
                 lista = lista +"</td>";
                 lista = lista + "<td>";
-                lista = lista + rs.empresa_descri;
+                lista = lista + rs.cli_ruc;
                 lista = lista +"</td>";
                 lista = lista + "<td>";
-                lista = lista + rs.empresa_ruc;
-                lista = lista +"</td>";
-                lista = lista + "<td>";
-                lista = lista + rs.empresa_direccion;
-                lista = lista +"</td>";
-                lista = lista + "<td>";
-                lista = lista + rs.empresa_telef;
-                lista = lista +"</td>";
-                lista = lista + "<td>";
-                lista = lista + rs.empresa_email;
+                lista = lista + rs.cli_razonsocial;
                 lista = lista +"</td>";
             lista = lista + "</tr>";
         }
@@ -166,13 +152,10 @@ function listar(){
     })
 }
 
-function seleccionEmpresa(id, empresa_descri, empresa_ruc, empresa_direccion, empresa_telef, empresa_email){
+function seleccionCliente(id, cli_ruc, cli_razonsocial){
     $("#id").val(id);
-    $("#empresa_descri").val(empresa_descri);
-    $("#empresa_ruc").val(empresa_ruc);
-    $("#empresa_direccion").val(empresa_direccion);
-    $("#empresa_telef").val(empresa_telef);
-    $("#empresa_email").val(empresa_email);
+    $("#cli_ruc").val(cli_ruc);
+    $("#cli_razonsocial").val(cli_razonsocial);
 
     $(".form-line").attr("class","form-line focused");
 }
@@ -189,16 +172,13 @@ function grabar(){
         metodo = "DELETE";
     }
     $.ajax({
-        url:"http://127.0.0.1:8000/api_proyecto/"+endpoint,
+        url:"http://127.0.0.1:8000/api_prueba_examen/"+endpoint,
         method:metodo,
         dataType: "json",
         data: { 
             'id': $("#id").val(), 
-            'empresa_descri': $("#empresa_descri").val(), 
-            'empresa_ruc': $("#empresa_ruc").val(), 
-            'empresa_direccion': $("#empresa_direccion").val(), 
-            'empresa_telef': $("#empresa_telef").val(), 
-            'empresa_email': $("#empresa_email").val()
+            'cli_ruc': $("#cli_ruc").val(), 
+            'cli_razonsocial': $("#cli_razonsocial").val()
         }
 
     })

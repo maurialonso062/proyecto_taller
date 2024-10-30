@@ -105,47 +105,24 @@
                                         <div id="listaTipoItems" style="display:none;"></div>
                                     </div>
                                 </div>
-                                <!-- CAMPO PARA DESCRIPCION CON 4 COLUMNAS -->
-                                <div class="col-sm-4">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input type="text" id="tipimo_descri" class="form-control" disabled onkeyup="buscarTipoImpuestos();">
-                                            <label class="form-label">Tipo Impuesto</label>
-                                        </div>
-                                        <!-- Campo oculto para almacenar el ID de la nacionalidad -->
-                                        <input type="hidden" id="tipo_impuestos_id" name="tipo_impuestos_id">
-                                            
+                             
                                         <!-- Contenedor para mostrar las nacionalidades -->
-                                        <div id="listaTipoImpuestos" style="display:none;"></div>
+                                        <div id="listaTipoImpuesto" style="display:none;"></div>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <!-- Campo de texto para la ciudad, habilitado -->
-                                            <input type="text" id="mar_descri" class="form-control" disabled onkeyup="buscarMarca();">
+                                            <input type="text" id="marca_nombre" class="form-control" disabled onkeyup="buscarMarca();">
                                             <label class="form-label">Marca</label>
                                         </div>
 
                                         <!-- Campo oculto para almacenar el ID de la marca -->
-                                        <input type="hidden" id="marca_id" name="marca_id">
+                                        <input type="hidden" id="marca_nombre" name="marca_id">
 
                                         <!-- Contenedor para la lista de ciudades -->
                                         <div id="listaMarcas" style="display:none;"></div>
-                                    </div>
-                                </div>
-                                <!-- CAMPO PARA GENTILICIO CON 4 COLUMNAS -->
-                                <div class="col-sm-4">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input type="text" id="mod_descri" class="form-control" disabled onkeyup="buscarModelos();">
-                                            <label class="form-label">Modelo</label>
-                                        </div>
-                                        <!-- Campo oculto para almacenar el ID del modelo -->
-                                        <input type="hidden" id="modelo_id" name="modelo_id">
-                                            
-                                        <!-- Contenedor para mostrar los modelo -->
-                                        <div id="listaModelo" style="display:none;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -176,7 +153,6 @@
                                             <th>Tipo items</th>
                                             <th>Tipo Impuesto</th>
                                             <th>Marca</th>
-                                            <th>Modelo</th>
                                         </tr>
                                     </thead>
                                     <tbody id="tableBody">
@@ -184,14 +160,7 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                        <th>Código</th>
-                                            <th>Descripcion</th>
-                                            <th>Costo</th>
-                                            <th>Precio</th>
-                                            <th>Tipo items</th>
-                                            <th>Tipo Impuesto</th>
-                                            <th>Marca</th>
-                                            <th>Modelo</th>
+                                        
                                         </tr>
                                     </tfoot>    
                                 </table>

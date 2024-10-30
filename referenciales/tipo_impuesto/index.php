@@ -68,7 +68,7 @@
                                 <div class="col-sm-5">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" id="tipimo_descri" class="form-control" disabled>
+                                            <input type="text" id="tipo_imp_descrip" class="form-control" disabled>
                                             <label class="form-label">Nombre</label>
                                         </div>
                                     </div>
@@ -77,7 +77,7 @@
                                 <div class="col-sm-5">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" id="tasa" class="form-control" disabled>
+                                            <input type="text" id="tipo_imp_tasa" class="form-control" disabled>
                                             <label class="form-label">Tasa</label>
                                         </div>
                                     </div>
@@ -111,9 +111,7 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>Código</th>
-                                            <th>Nombre</th>
-                                            <th>Tasa</th>
+                                            
                                         </tr>
                                     </tfoot>    
                                 </table>

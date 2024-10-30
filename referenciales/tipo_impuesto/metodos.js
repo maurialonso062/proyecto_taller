@@ -51,8 +51,8 @@ function cancelar(){
 function agregar(){
     $("#txtOperacion").val(1);
     $("#txtCodigo").val(0);
-    $("#tipimo_descri").removeAttr("disabled");
-    $("#tasa").removeAttr("disabled");
+    $("#tipo_imp_descrip").removeAttr("disabled");
+    $("#tipo_imp_tasa").removeAttr("disabled");
 
     $("#btnAgregar").attr("disabled","true");
     $("#btnEditar").attr("disabled","true");
@@ -66,8 +66,8 @@ function agregar(){
 
 function editar(){
     $("#txtOperacion").val(2);
-    $("#tipimo_descri").removeAttr("disabled");
-    $("#tasa").removeAttr("disabled");
+    $("#tipo_imp_descrip").removeAttr("disabled");
+    $("#tipo_imp_tasa").removeAttr("disabled");
 
     $("#btnAgregar").attr("disabled","true");
     $("#btnEditar").attr("disabled","true");
@@ -129,14 +129,14 @@ function buscarProductos(){
         method: "POST",
         dataType: "json",
         data:{
-            "item_decripcion":$("#item_decripcion").val(),
+            "item_descripcion":$("#item_descripcion").val(),
             "tipo_descripcion":"PRODUCTO"
         }
     })
     .done(function(resultado){
         var lista = "<ul class=\"list-group\">";
         for(rs of resultado){
-            lista += "<li class=\"list-group-item\" onclick=\"seleccionProducto("+rs.item_id+",'"+rs.item_decripcion+"')\">"+rs.item_decripcion+"</li>";   
+            lista += "<li class=\"list-group-item\" onclick=\"seleccionProducto("+rs.item_id+",'"+rs.item_descripcion+"')\">"+rs.item_descripcion+"</li>";   
         }
         lista += "</ul>";
         $("#listaProductos").html(lista);
@@ -149,9 +149,9 @@ function buscarProductos(){
 }
 
 // Rellena el campo de producto seleccionado.
-function seleccionProducto(item_id, item_decripcion){
+function seleccionProducto(item_id, item_descripcion){
     $("#item_id").val(item_id);
-    $("#item_decripcion").val(item_decripcion);
+    $("#item_descripcion").val(item_descripcion);
 
     $("#listaProductos").html("");
     $("#listaProductos").attr("style","display:none;");
@@ -170,22 +170,22 @@ function seleccionPais(codigo, descripcion, gentilicio, siglas){
 
 function listar(){
     $.ajax({
-        url:"http://127.0.0.1:8000/api_taller/tipo-impuesto/read",
+        url:"http://127.0.0.1:8000/api_proyecto/tipo_impuesto/read",
         method:"GET",
         dataType: "json"
     })
     .done(function(resultado){
         var lista = "";
         for(rs of resultado){
-            lista = lista + "<tr class=\"item-list\" onclick=\"seleccionTipoImpuestos("+rs.id+",'"+rs.tipimo_descri+"','"+rs.tasa+"');\">";
+            lista = lista + "<tr class=\"item-list\" onclick=\"seleccionTipoImpuestos("+rs.id+",'"+rs.tipo_imp_descrip+"','"+rs.tipo_imp_tasa+"');\">";
                 lista = lista + "<td>";
                 lista = lista + rs.id;
                 lista = lista +"</td>";
                 lista = lista + "<td>";
-                lista = lista + rs.tipimo_descri;
+                lista = lista + rs.tipo_imp_descrip;
                 lista = lista +"</td>";
                 lista = lista + "<td>";
-                lista = lista + rs.tasa;
+                lista = lista + rs.tipo_imp_tasa;
                 lista = lista +"</td>";
             lista = lista + "</tr>";
         }
@@ -196,10 +196,10 @@ function listar(){
         alert(c);
     })
 }
-function seleccionTipoImpuestos(codigo, tipimo_descri,tasa){
+function seleccionTipoImpuestos(codigo, tipo_imp_descrip,tipo_imp_tasa){
     $("#txtCodigo").val(codigo);
-    $("#tipimo_descri").val(tipimo_descri);
-    $("#tasa").val(tasa);
+    $("#tipo_imp_descrip").val(tipo_imp_descrip);
+    $("#tipo_imp_tasa").val(tipo_imp_tasa);
 
     $("#btnAgregar").attr("disabled","true");
     $("#btnEditar").attr("disabled");
@@ -213,7 +213,7 @@ function seleccionTipoImpuestos(codigo, tipimo_descri,tasa){
 }
 
 function grabar(){
-    var endpoint = "tipo-impuesto/create";
+    var endpoint = "tipo_impuesto/create";
     var metodo = "POST";
     if($("#txtOperacion").val()==2){
         endpoint = "tipo-impuesto/update/"+$("#txtCodigo").val();
@@ -224,13 +224,13 @@ function grabar(){
         metodo = "DELETE";
     }
     $.ajax({
-        url:"http://127.0.0.1:8000/api_taller/"+endpoint,
+        url:"http://127.0.0.1:8000/api_proyecto/"+endpoint,
         method:metodo,
         dataType: "json",
         data: { 
             'id': $("#txtCodigo").val(), 
-            'tipimo_descri': $("#tipimo_descri").val(),
-            'tasa': $("#tasa").val()
+            'tipo_imp_descrip': $("#tipo_imp_descrip").val(),
+            'tipo_imp_tasa': $("#tipo_imp_tasa").val()
         }
 
     })

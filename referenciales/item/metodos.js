@@ -55,9 +55,7 @@ function agregar(){
     $("#item_costo").removeAttr("disabled");
     $("#item_precio").removeAttr("disabled");
     $("#tipo_descripcion").removeAttr("disabled");
-    $("#mar_descri").removeAttr("disabled");
-    $("#mod_descri").removeAttr("disabled");
-    $("#tipimo_descri").removeAttr("disabled");
+    $("#marca_nombre").removeAttr("disabled");
 
     $("#btnAgregar").attr("disabled","true");
     $("#btnEditar").attr("disabled","true");
@@ -75,9 +73,7 @@ function editar(){
     $("#item_costo").removeAttr("disabled");
     $("#item_precio").removeAttr("disabled");
     $("#tipo_descripcion").removeAttr("disabled");
-    $("#mar_descri").removeAttr("disabled");
-    $("#mod_descri").removeAttr("disabled");
-    $("#tipimo_descri").removeAttr("disabled");
+    $("#marca_nombre").removeAttr("disabled");
 
     $("#btnAgregar").attr("disabled","true");
     $("#btnEditar").attr("disabled","true");
@@ -135,7 +131,7 @@ function mensajeOperacion(titulo,mensaje,tipo) {
 
 function listar(){
     $.ajax({
-        url:"http://127.0.0.1:8000/api_taller/items/read",
+        url:"http://127.0.0.1:8000/api_proyecto/items/read",
         method:"GET",
         dataType: "json"
     })
@@ -143,15 +139,13 @@ function listar(){
         var lista = "";
         for(rs of resultado){
     $("#item_descripcion").removeAttr("disabled");
-            lista = lista + "<tr class=\"item-list\" onclick=\"seleccionProveedor(" + rs.id + "," + rs.tipo_impuestos_id + "," + rs.tipo_id + "," + rs.modelo_id + "," + rs.marca_id + ",'" + rs.item_descripcion + "','" + rs.item_costo + "','" + rs.item_precio + "','" + rs.tipo_descripcion + "','" + rs.mar_descri + "','" + rs.mod_descri + "','" + rs.tipimo_descri + "');\">";
+            lista = lista + "<tr class=\"item-list\" onclick=\"seleccionItem(" + rs.id + "," + rs.tipo_impuesto_id + "," + rs.tipo_id + "," + rs.marca_id + ",'" + rs.item_descripcion + "','" + rs.item_costo + "','" + rs.item_precio + "','" + rs.tipo_descripcion + "','" + rs.marca_nombre + "');\">";
                 lista = lista + "<td>" + rs.id + "</td>";
                 lista = lista + "<td>" + rs.item_descripcion + "</td>";
                 lista = lista + "<td>" + rs.item_costo + "</td>";
                 lista = lista + "<td>" + rs.item_precio + "</td>";
                 lista = lista + "<td>" + rs.tipo_descripcion + "</td>";
-                lista = lista + "<td>" + rs.mar_descri + "</td>";
-                lista = lista + "<td>" + rs.mod_descri + "</td>";
-                lista = lista + "<td>" + rs.tipimo_descri + "</td>";
+                lista = lista + "<td>" + rs.marca_nombre + "</td>";
             lista = lista + "</tr>";
         }
         $("#tableBody").html(lista);
@@ -162,21 +156,17 @@ function listar(){
     });
 }
 
-function seleccionItem(id, marca_id, modelo_id, tipo_impuestos_id,tipo_id, item_descripcion, item_costo, item_precio, tipo_descripcion, mar_descri, mod_descri,tipimo_descri) {
+function seleccionItem(id, marca_id, tipo_impuesto_id,tipo_id, item_descripcion, item_costo, item_precio, tipo_descripcion, marca_nombre,tipo_imp_descrip) {
     // Asignar los valores a los campos correspondientes
     $("#id").val(id);
     $("#item_descripcion").val(item_descripcion);
     $("#item_costo").val(item_costo);
     $("#item_precio").val(item_precio);
     
-    $("#mar_descri").val(mar_descri); // Campo visible de la mar_descri
-    $("#mod_descri").val(mod_descri); // Campo visible de la mod_descri
-    $("#modelo_id").val(modelo_id); // Campo oculto de modelo_id
+    $("#marca_nombre").val(marca_nombre); // Campo visible de la marca_nombre
     $("#marca_id").val(marca_id); // Campo oculto de marca_id
     $("#tipo_descripcion").val(tipo_descripcion); // Campo visible de la tipo_descripcion
     $("#tipo_id").val(tipo_id); // Campo visible de la tipo_id
-    $("#tipo_impuestos_id").val(tipo_impuestos_id); // Campo oculto de tipo_impuestos_id
-    $("#tipimo_descri").val(tipimo_descri); // Campo oculto de tipimo_descri
 
 
     $("#btnAgregar").attr("disabled","true");
@@ -194,7 +184,7 @@ function seleccionItem(id, marca_id, modelo_id, tipo_impuestos_id,tipo_id, item_
 
 function buscarTipoItems(){
     $.ajax({
-        url:"http://127.0.0.1:8000/api_taller/tipos/read",
+        url:"http://127.0.0.1:8000/api_proyecto/tipos/read",
         method: "GET",
         dataType: "json"
     })
@@ -223,44 +213,17 @@ function seleccionTipoItems(id, tipo_descripcion,tipo_objeto) {
     $("#listaTipoItems").attr("style", "display:none;");
 }
 
-function buscarTipoImpuesto(){
-    $.ajax({
-        url:"http://127.0.0.1:8000/api_taller/tipo-impuesto/read",
-        method:"GET",
-        dataType: "json"
-    })
-    .done(function(resultado){
-        var lista = "<ul class=\"list-group\">";
-        for(rs of resultado){
-            lista += "<li class=\"list-group-item\" onclick=\"seleccionTipoImpuesto("+rs.id+",'"+rs.tipimo_descri+"','"+rs.tasa+"');\">"+rs.tipimo_descri+"</li>";
-        }
-        lista += "</ul>";
-        $("#listaTipoImpuesto").html(lista);
-        $("#listaTipoImpuesto").attr("style","display:block; position:absolute; z-index:2000;");
-    })
-    .fail(function(a,b,c){
-        alert(c);
-        console.log(a.responseText);
-    })
-} 
-function seleccionTipoImpuesto(id,tipimo_descri){
-    $("#tipo_impuestos_id").val(id);
-    $("#tipimo_descri").val(tipimo_descri);
-
-    $("#listaTipoImpuesto").html("");
-    $("#listaTipoImpuesto").attr("style","display:none;");
-}
 
 function buscarMarca(){
     $.ajax({
-        url:"http://127.0.0.1:8000/api_taller/marca/read",
+        url:"http://127.0.0.1:8000/api_proyecto/marca/read",
         method:"GET",
         dataType: "json"
     })
     .done(function(resultado){
         var lista = "<ul class=\"list-group\">";
         for(rs of resultado){
-            lista += "<li class=\"list-group-item\" onclick=\"seleccionMarca("+rs.id+",'"+rs.mar_descri+"');\">"+rs.mar_descri+"</li>";
+            lista += "<li class=\"list-group-item\" onclick=\"seleccionMarca("+rs.id+",'"+rs.marca_nombre+"');\">"+rs.marca_nombre+"</li>";
         }
         lista += "</ul>";
         $("#listaMarcas").html(lista);
@@ -271,41 +234,14 @@ function buscarMarca(){
         console.log(a.responseText);
     })
 }  
-function seleccionMarca(id,mar_descri){
+function seleccionMarca(id,marca_nombre){
     $("#marca_id").val(id);
-    $("#mar_descri").val(mar_descri);
+    $("#marca_nombre").val(marca_nombre);
 
     $("#listaMarcas").html("");
     $("#listaMarcas").attr("style","display:none;");
 }
 
-function buscarModelos(){
-    $.ajax({
-        url:"http://127.0.0.1:8000/api_taller/modelo/read",
-        method:"GET",
-        dataType: "json"
-    })
-    .done(function(resultado){
-        var lista = "<ul class=\"list-group\">";
-        for(rs of resultado){
-            lista += "<li class=\"list-group-item\" onclick=\"seleccionModelo("+rs.id+",'"+rs.mod_descri+"');\">"+rs.mod_descri+"</li>";
-        }
-        lista += "</ul>";
-        $("#listaModelo").html(lista);
-        $("#listaModelo").attr("style","display:block; position:absolute; z-index:2000;");
-    })
-    .fail(function(a,b,c){
-        alert(c);
-        console.log(a.responseText);
-    })
-}  
-function seleccionModelo(id,mod_descri){
-    $("#marca_id").val(id);
-    $("#mod_descri").val(mod_descri);
-
-    $("#listaModelo").html("");
-    $("#listaModelo").attr("style","display:none;");
-}
 
 function grabar(){
     var endpoint = "items/create";
@@ -319,18 +255,16 @@ function grabar(){
         metodo = "DELETE";
     }
     $.ajax({
-        url:"http://127.0.0.1:8000/api_taller/"+endpoint,
+        url:"http://127.0.0.1:8000/api_proyecto/"+endpoint,
         method:metodo,
         dataType: "json",
         data: { 
-'id': $("#id").val(), 
-            'item_decripcion': $("#item_decripcion").val(), 
+            'id': $("#id").val(), 
+            'item_descripcion': $("#item_descripcion").val(), 
             'item_costo': $("#item_costo").val(),
             'item_precio': $("#item_precio").val(),
             'tipo_id': $("#tipo_id").val(),
-            'tipo_impuestos_id': $("#tipo_impuestos_id").val(),
-            'marca_id': $("#marca_id").val(),
-            'modelo_id': $("#modelo_id").val()
+            'marca_id': $("#marca_id").val()
         }
 
     })

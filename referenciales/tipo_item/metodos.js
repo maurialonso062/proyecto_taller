@@ -124,7 +124,7 @@ function mensajeOperacion(titulo,mensaje,tipo) {
 
 function listar(){
     $.ajax({
-        url:"http://127.0.0.1:8000/api_taller/tipos/read",
+        url:"http://127.0.0.1:8000/api_proyecto/tipos/read",
         method:"GET",
         dataType: "json"
     })
@@ -178,7 +178,7 @@ function grabar(){
         metodo = "DELETE";
     }
     $.ajax({
-        url:"http://127.0.0.1:8000/api_taller/"+endpoint,
+        url:"http://127.0.0.1:8000/api_proyecto/"+endpoint,
         method:metodo,
         dataType: "json",
         data: { 

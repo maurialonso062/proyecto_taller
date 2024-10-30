@@ -68,8 +68,8 @@
                                 <div class="col-sm-3">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" id="emp_rsocial" class="form-control" disabled>
-                                            <label class="form-label">Razón Social</label>
+                                            <input type="text" id="empresa_descri" class="form-control" disabled>
+                                            <label class="form-label">Nombre de la Empresa</label>
                                         </div>
                                     </div>
                                 </div>
@@ -77,8 +77,8 @@
                                 <div class="col-sm-3">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" id="emp_telefono" class="form-control" disabled>
-                                            <label class="form-label">Telefono</label>
+                                            <input type="text" id="empresa_ruc" class="form-control" disabled>
+                                            <label class="form-label">RUC</label>
                                         </div>
                                     </div>
                                 </div>
@@ -86,8 +86,8 @@
                                 <div class="col-sm-4">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" id="emp_ruc" class="form-control" disabled>
-                                            <label class="form-label">RUC</label>
+                                            <input type="text" id="empresa_direccion" class="form-control" disabled>
+                                            <label class="form-label">Dirección</label>
                                         </div>
                                     </div>
                                 </div>
@@ -95,8 +95,8 @@
                                 <div class="col-sm-3">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" id="pais_descripcion" class="form-control" disabled>
-                                            <label class="form-label">Pais</label>
+                                            <input type="text" id="empresa_telefono" class="form-control" disabled>
+                                            <label class="form-label">Telefono</label>
                                         </div>
                                     </div>
                                 </div>
@@ -104,17 +104,8 @@
                                 <div class="col-sm-3">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" id="ciudades_descripcion" class="form-control" disabled>
-                                            <label class="form-label">Ciudad</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- CAMPO PARA DIRECCION CON 6 COLUMNAS -->
-                                <div class="col-sm-6">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input type="text" id="emp_direc" class="form-control" disabled>
-                                            <label class="form-label">Dirección</label>
+                                            <input type="text" id="empresa_email" class="form-control" disabled>
+                                            <label class="form-label">Correo</label>
                                         </div>
                                     </div>
                                 </div>
@@ -133,7 +124,7 @@
 
                     <div class="card">
                         <div class="header">
-                            <h2>Registros de Clientes</h2>
+                            <h2>EMPRESAS</h2>
                         </div>
                         <div class="body">
                             <div class="table-responsive">
@@ -141,11 +132,11 @@
                                     <thead>
                                         <tr>
                                             <th>Código</th>
-                                            <th>Razón Social</th>
+                                            <th>Empresa</th>
                                             <th>RUC</th>
-                                            <th>País</th>
-                                            <th>Ciudad</th>
                                             <th>Dirección</th>
+                                            <th>Telefono</th>
+                                            <th>Correo</th>
                                         </tr>
                                     </thead>
                                     <tbody id="tableBody">

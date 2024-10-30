@@ -50,9 +50,12 @@ function cancelar(){
 
 function agregar(){
     $("#txtOperacion").val(1);
-    $("#id").val(0);
-    $("#cli_ruc").removeAttr("disabled");
-    $("#cli_razonsocial").removeAttr("disabled");
+    $("#suc_descri").removeAttr(empresa_descri);
+    $("#empresa_direccion").removeAttr(empresa_direccion);
+    $("#empresa_telef").removeAttr(empresa_telefono);
+    $("#empresa_email").removeAttr(empresa_email);
+    $("#pais_descripcion").removeAttr(pais_id);
+    $("#ciudades_descripcion").removeAttr(ciudades_id);
 
     $("#btnAgregar").attr("disabled","true");
     $("#btnEditar").attr("disabled","true");
@@ -66,8 +69,12 @@ function agregar(){
 
 function editar(){
     $("#txtOperacion").val(2);
-    $("#cli_ruc").removeAttr("disabled");
-    $("#cli_razonsocial").removeAttr("disabled");
+    $("#suc_descri").removeAttr(empresa_descri);
+    $("#empresa_direccion").removeAttr(empresa_direccion);
+    $("#empresa_telef").removeAttr(empresa_telefono);
+    $("#empresa_email").removeAttr(empresa_email);
+    $("#pais_descripcion").removeAttr(pais_id);
+    $("#ciudades_descripcion").removeAttr(ciudades_id);
 
     $("#btnAgregar").attr("disabled","true");
     $("#btnEditar").attr("disabled","true");
@@ -125,7 +132,7 @@ function mensajeOperacion(titulo,mensaje,tipo) {
 
 function listar(){
     $.ajax({
-        url:"http://127.0.0.1:8000/api_prueba_examen/clientes/read",
+        url:"http://127.0.0.1:8000/api_proyecto/sucursal/read",
         method:"GET",
         dataType: "json"
     })
@@ -172,13 +179,16 @@ function grabar(){
         metodo = "DELETE";
     }
     $.ajax({
-        url:"http://127.0.0.1:8000/api_prueba_examen/"+endpoint,
+        url:"http://127.0.0.1:8000/api_proyecto/"+endpoint,
         method:metodo,
         dataType: "json",
         data: { 
             'id': $("#id").val(), 
-            'cli_ruc': $("#cli_ruc").val(), 
-            'cli_razonsocial': $("#cli_razonsocial").val()
+            'empresa_id': $("#empresa_id").val(), 
+            'suc_descri': $("#suc_descri").val(), 
+            'suc_telef': $("#suc_telef").val(), 
+            'suc_email': $("#suc_email").val(), 
+            'suc_descri': $("#suc_descri").val()
         }
 
     })

@@ -51,8 +51,8 @@ function cancelar(){
 function agregar(){
     $("#txtOperacion").val(1);
     $("#item_descripcion").removeAttr("disabled");
-    $("#marc_nom").removeAttr("disabled");
-    $("#item_marca_descrip").removeAttr("disabled");
+    $("#marca_nombre").removeAttr("disabled");
+    $("#item_marca_descri").removeAttr("disabled");
 
     $("#btnAgregar").attr("disabled","true");
     $("#btnEditar").attr("disabled","true");
@@ -67,8 +67,8 @@ function agregar(){
 function editar(){
     $("#txtOperacion").val(2);
     $("#item_descripcion").removeAttr("disabled");
-    $("#marc_nom").removeAttr("disabled");
-    $("#item_marca_descrip").removeAttr("disabled");
+    $("#marca_nombre").removeAttr("disabled");
+    $("#item_marca_descri").removeAttr("disabled");
 
     $("#btnAgregar").attr("disabled","true");
     $("#btnEditar").attr("disabled","true");
@@ -126,14 +126,14 @@ function mensajeOperacion(titulo,mensaje,tipo) {
 
 function listar(){
     $.ajax({
-        url:"http://127.0.0.1:8000/api_taller/item-marca/read",
+        url:"http://127.0.0.1:8000/api_proyecto/item_marca/read",
         method:"GET",
         dataType: "json"
     })
     .done(function(resultado){
         var lista = "";
         for(rs of resultado){
-            lista = lista + "<tr class=\"item-list\" onclick=\"seleccionItemMarca("+rs.marca_id+",'"+rs.mar_descri+"',"+rs.item_id+",'"+rs.item_descripcion+"','"+rs.item_marca_descrip+"');\">";   
+            lista = lista + "<tr class=\"item-list\" onclick=\"seleccionItemMarca("+rs.marca_id+",'"+rs.mar_descri+"',"+rs.item_id+",'"+rs.item_descripcion+"','"+rs.item_marca_descri+"');\">";   
                 lista = lista + "<td>";
                 lista = lista + rs.mar_descri;
                 lista = lista +"</td>";
@@ -141,7 +141,7 @@ function listar(){
                 lista = lista + rs.item_descripcion;
                 lista = lista +"</td>";
                 lista = lista + "<td>";
-                lista = lista + rs.item_marca_descrip;
+                lista = lista + rs.item_marca_descri;
                 lista = lista +"</td>";
             lista = lista + "</tr>";
         }
@@ -153,12 +153,12 @@ function listar(){
     })
 }
 
-function seleccionItemMarca(marca_id,mar_descri,item_id, item_descripcion, item_marca_descrip){
+function seleccionItemMarca(marca_id,marca_nombre,item_id, item_descripcion, item_marca_descri){
     $("#marca_id").val(marca_id);
     $("#item_id").val(item_id);
-    $("#item_marca_descrip").val(item_marca_descrip);
+    $("#item_marca_descri").val(item_marca_descri);
     $("#item_descripcion").val(item_descripcion);
-    $("#marc_nom").val(mar_descri);
+    $("#marca_nombre").val(marca_nombre);
 
     $("#btnAgregar").attr("disabled","true");
     $("#btnEditar").attr("disabled");
@@ -176,27 +176,27 @@ function grabar() {
         id: $("#id").val(),
         item_id: $("#item_id").val(),
         marca_id: $("#marca_id").val(),
-        item_marca_descrip: $("#item_marca_descrip").val()
+        item_marca_descri: $("#item_marca_descri").val()
     });
-    var endpoint = "item-marca/create";
+    var endpoint = "item_marca/create";
     var metodo = "POST";
     if ($("#txtOperacion").val() == 2) {
-        endpoint = "item-marca/update/" + $("#id").val();
+        endpoint = "item_marca/update/" + $("#id").val();
         metodo = "PUT";
     }
     if ($("#txtOperacion").val() == 3) {
-        endpoint = "item-marca/delete/" + $("#id").val();
+        endpoint = "item_marca/delete/" + $("#id").val();
         metodo = "DELETE";
     }
     $.ajax({
-        url: "http://127.0.0.1:8000/api_taller/" + endpoint,
+        url: "http://127.0.0.1:8000/api_proyecto/" + endpoint,
         method: metodo,
         dataType: "json",
         data: {
             'id': $("#id").val(),
             'item_id': $("#item_id").val(),  // Cambiado para enviar item_id
             'marca_id': $("#marca_id").val(), // Cambiado para enviar marca_id
-            'item_marca_descrip': $("#item_marca_descrip").val(), // Cambiado para enviar item_marca_descrip
+            'item_marca_descri': $("#item_marca_descri").val(), // Cambiado para enviar item_marca_descri
             'operacion': $("#txtOperacion").val()
         }
     })
@@ -218,7 +218,7 @@ function grabar() {
 }
 function buscarProductos(){
     $.ajax({
-        url:"http://127.0.0.1:8000/api_taller/items/buscar",
+        url:"http://127.0.0.1:8000/api_proyecto/items/buscar",
         method: "POST",
         dataType: "json",
         data:{
@@ -252,11 +252,11 @@ function seleccionProducto(item_id, item_descripcion) {
 
 function buscarMarca(){
     $.ajax({
-        url:"http://127.0.0.1:8000/api_taller/marca/read",
+        url:"http://127.0.0.1:8000/api_proyecto/marca/read",
         method:"GET",
         dataType: "json",
         data: {
-            'mar_descri': $("#marc_nom").val()
+            'mar_descri': $("#marca_nombre").val()
         }
     })
     .done(function(resultado){
@@ -276,7 +276,7 @@ function buscarMarca(){
 
 function seleccionMarca(id, nombre) {
     $("#marca_id").val(id);  // Asegúrate de asignar correctamente marca_id
-    $("#marc_nom").val(nombre);
+    $("#marca_nombre").val(nombre);
     $("#listaMarcas").html("");
     $("#listaMarcas").attr("style", "display:none;");
 }

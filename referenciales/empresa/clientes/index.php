@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>GUI SUCURSAL</title>
+    <title>GUI CLIENTES</title>
     <!-- Favicon-->
     <link rel="icon" href="../../../favicon.ico" type="image/x-icon">
 
@@ -41,7 +41,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="block-header">
-                <h2>MANTENER SUCURSAL</h2>
+                <h2>MANTENER CLIENTES</h2>
             </div>
 
             <div class="row clearfix">
@@ -50,12 +50,12 @@
                     
                     <div class="card">
                         <div class="header">
-                            <h2>Mantener datos de Sucursal <small>CRUD de Sucursal</small> </h2>
+                            <h2>Mantener datos de Clientes <small>CRUD de Clientes</small> </h2>
                         </div>
                         <div class="body">
                             <div class="row clearfix">
                                 <input type="hidden" value="0" id="txtOperacion"/>
-                                <!-- CAMPO PARA CODIGO CON 2 COLUMNAS -->
+                                <!-- CAMPO PARA CODIGO CON 4 COLUMNAS -->
                                 <div class="col-sm-2">
                                     <div class="form-group form-float">
                                         <div class="form-line">
@@ -64,72 +64,26 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- CAMPO PARA CODIGO CON 2 COLUMNAS -->
-                                <div class="col-sm-2">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input type="text" id="empresa_id" class="form-control" disabled>
-                                            <label class="form-label">Empresa</label>
-                                        </div>
-                                    </div>
-                                </div>
                                 <!-- CAMPO PARA DESCRIPCION CON 4 COLUMNAS -->
-                                <div class="col-sm-3">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input type="text" id="suc_descri" class="form-control" disabled>
-                                            <label class="form-label">Sucursal</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- CAMPO PARA DIRECCION CON 6 COLUMNAS -->
-                                <div class="col-sm-3">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input type="text" id="suc_direccion" class="form-control" disabled>
-                                            <label class="form-label">Direccion</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- CAMPO PARA DIRECCION CON 6 COLUMNAS -->
                                 <div class="col-sm-4">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" id="suc_telef" class="form-control" disabled>
-                                            <label class="form-label">Telefono</label>
+                                            <input type="text" id="cli_ruc" class="form-control" disabled>
+                                            <label class="form-label">RUC</label>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- CAMPO PARA DIRECCION CON 6 COLUMNAS -->
-                                <div class="col-sm-4">
+                                <!-- CAMPO PARA GENTILICIO CON 6 COLUMNAS -->
+                                <div class="col-sm-6">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" id="suc_email" class="form-control" disabled>
-                                            <label class="form-label">Correo</label>
+                                            <input type="text" id="cli_razonsocial" class="form-control" disabled>
+                                            <label class="form-label">Razon Social</label>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- CAMPO PARA PAIS CON 3 COLUMNAS -->
-                                <div class="col-sm-3">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input type="text" id="pais_descripcion" class="form-control" disabled>
-                                            <label class="form-label">Pais</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- CAMPO PARA CIUDAD CON 3 COLUMNAS -->
-                                <div class="col-sm-3">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input type="text" id="ciudades_descripcion" class="form-control" disabled>
-                                            <label class="form-label">Ciudad</label>
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
-
+                            
                             <div class="button-demo">
                                 <button type="button" id="btnAgregar" class="btn btn-success waves-effect" onclick="agregar();">AGREGAR</button>
                                 <button type="button" id="btnEditar" class="btn btn-primary waves-effect" onclick="editar();">EDITAR</button>
@@ -142,7 +96,7 @@
 
                     <div class="card">
                         <div class="header">
-                            <h2>Registros de Sucursales</h2>
+                            <h2>Registros de Clientes</h2>
                         </div>
                         <div class="body">
                             <div class="table-responsive">
@@ -150,11 +104,8 @@
                                     <thead>
                                         <tr>
                                             <th>Código</th>
-                                            <th>Razón Social</th>
                                             <th>RUC</th>
-                                            <th>País</th>
-                                            <th>Ciudad</th>
-                                            <th>Dirección</th>
+                                            <th>Razón Social</th>
                                         </tr>
                                     </thead>
                                     <tbody id="tableBody">
@@ -162,7 +113,9 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            
+                                            <th>Código</th>
+                                            <th>RUC</th>
+                                            <th>Razón Social</th>
                                         </tr>
                                     </tfoot>    
                                 </table>
