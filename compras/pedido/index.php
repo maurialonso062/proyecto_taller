@@ -55,14 +55,48 @@
                         <div class="body">
                             <div class="row clearfix">
                                 <input type="hidden" value="0" id="txtOperacion"/>
-                                <input type="hidden" value="1" id="user_id"/>
+                                <!--<input type="hidden" value="1" id="user_id"/>-->
                                 <input type="hidden" value="PENDIENTE" id="pedido_estado"/>
+
+
                                 <!-- CAMPO PARA CODIGO CON 3 COLUMNAS -->
                                 <div class="col-sm-1">
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <input type="text" id="id" class="form-control" disabled>
                                             <label class="form-label">Código</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- CAMPO PARA OBSERVACIONES CON 5 COLUMNAS -->
+                                <div class="col-sm-2">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" id="empresa_descri" class="form-control" disabled onkeyup="buscarEmpresa();">
+                                            <input type="hidden" id= "empresa_id"class="empresa_id" />
+                                            <label class="form-label">Empresa</label>
+                                        </div>
+                                    </div>
+                                    <div id="ListaEmpresas" style="display: none;"></div>
+                                </div>
+                                
+
+                                <div class="col-sm-3">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" id="suc_descri" class="form-control" disabled onkeyup="buscarSucursal();">
+                                            <input type="hidden" id="sucursal_id" class="sucursal_id" />
+                                            <label class="form-label">Sucursal</label>
+                                        </div>
+                                    </div>
+                                    <div id="ListaSucursales" style="display: none;"></div>
+                                </div>
+                                <!-- CAMPO PARA FECHA DE VENCIMIENTO CON 5 COLUMNAS -->
+                                <div class="col-sm-3">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" id="pedido_fecha_aprob" class="datetimepicker form-control" disabled>
+                                            <label class="form-label">Fecha Aprobación</label>
                                         </div>
                                     </div>
                                 </div>
@@ -76,6 +110,17 @@
                                     </div>
                                 </div>
                                 <!-- CAMPO PARA OBSERVACIONES CON 5 COLUMNAS -->
+                                <div class="col-sm-4">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" id="name" class="form-control" disabled>
+                                            <input type="hidden" id="user_id" class="user_id" />
+                                            <label class="form-label">Funcionario</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- CAMPO PARA OBSERVACIONES CON 5 COLUMNAS -->
                                 <div class="col-sm-8">
                                     <div class="form-group form-float">
                                         <div class="form-line">
@@ -85,6 +130,7 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             
                             <div class="button-demo">
                                 <button type="button" id="btnAgregar" class="btn btn-success waves-effect" onclick="agregar();">AGREGAR</button>
@@ -182,9 +228,12 @@
                                     <thead>
                                         <tr style="background-color: #e6e6e6;">
                                             <th>Código</th>
+                                            <th>Empresa</th>
+                                            <th>Sucursal</th>
+                                            <th>Fecha Aprobación</th>
                                             <th>Vencimiento</th>
+                                            <th>Funcionario</th>
                                             <th>Observaciones</th>
-                                            <th>Encargado</th>
                                             <th>Estado</th>
                                         </tr>
                                     </thead>
@@ -193,6 +242,9 @@
                                     </tbody>
                                     <tfoot>
                                         <tr style="background-color: #e6e6e6;">
+                                            <th> </th>
+                                            <th> </th>
+                                            <th> </th>
                                             <th> </th>
                                             <th> </th>
                                             <th> </th>
